@@ -4,6 +4,11 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
    
-   <http auto-config="true"></http>
+   <http auto-config="true">
+   		<intercept-url pattern="/admin**" access="hasRole('ADMIN')" />
+   		<intercept-url pattern="/users**" access="hasRole('USERS') or hasRole('ADMIN')"/>
+   		
+   		<form-login login-page="/login" login-processing-url="/j_spring_login"/>
+   </http>
    
 </beans:beans>
