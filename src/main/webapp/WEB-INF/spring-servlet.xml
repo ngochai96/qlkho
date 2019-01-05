@@ -9,26 +9,33 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:component-scan base-package="com.ngochai"/>
+	<context:component-scan
+		base-package="com.ngochai" />
 	<mvc:annotation-driven />
-	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp"/>
+		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/qlkho" />
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/qlkho" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
-	
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="packagesToScan" value="com.ngochai.bean"/>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.ngochai.bean" />
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+			<bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
 		</property>
 		<property name="jpaProperties">
 			<props>
@@ -37,10 +44,13 @@
 			</props>
 		</property>
 	</bean>
-	
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
 	</bean>
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/> 
+
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 </beans>

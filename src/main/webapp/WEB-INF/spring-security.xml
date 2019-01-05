@@ -8,7 +8,17 @@
    		<intercept-url pattern="/admin**" access="hasRole('ADMIN')" />
    		<intercept-url pattern="/users**" access="hasRole('USERS') or hasRole('ADMIN')"/>
    		
-   		<form-login login-page="/login" login-processing-url="/j_spring_login"/>
+   		<form-login login-page="/login" login-processing-url="/j_spring_login" 
+   		default-target-url="/user" authentication-failure-url="/login?error"
+   		username-parameter="username" password-parameter="password"/>
+   		
+   		<logout logout-url="/j_spring_logout" logout-success-url="/logout" delete-cookies="JSESSIONID"/>
    </http>
+   
+   <authentication-manager>
+   	<authentication-provider user-service-ref="employeeServices">
+   		<password-encoder hash="bcrypt"/>
+   	</authentication-provider>
+   </authentication-manager>
    
 </beans:beans>
